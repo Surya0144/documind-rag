@@ -1,7 +1,15 @@
+# Python
 __pycache__/
 *.py[cod]
 venv/
+.venv/
 .env
-.DS_Store
+
+# Data
 data/*
 !data/.gitkeep
+
+# OS & IDE
+.DS_Store
+.vscode/
+*.swp
