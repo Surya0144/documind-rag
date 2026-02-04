@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  endee:
+    image: endeeio/endee-server:latest
+    container_name: endee-core
+    ports:
+      - "8080:8080"
+    environment:
+      - NDD_NUM_THREADS=4           # Optimize for standard dev machines
+      - NDD_AUTH_TOKEN=${ENDEE_API_KEY:-} # Optional auth
+    volumes:
+      - endee_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  endee_data:
